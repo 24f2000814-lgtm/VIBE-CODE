@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Flight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <h1>Book Flight</h1>
+    <form action="/confirm_booking" method="post">
+        <input type="hidden" name="flight_id" value="{{ flight.id }}">
+        <h2>Flight Details</h2>
+        <p>Airline: {{ flight.airline }}</p>
+        <p>Flight Number: {{ flight.flight_number }}</p>
+        <p>Departure: {{ flight.origin }} at {{ flight.departure_time.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p>Arrival: {{ flight.destination }} at {{ flight.arrival_time.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p>Price: {{ flight.price }}</p>
+
+        <h2>Your Details</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" required>
+        <label for="seats">Number of Seats:</label>
+        <input type="number" id="seats" name="seats" min="1" max="{{ flight.available_seats }}" required>
+
+        <button type="submit">Confirm Booking</button>
+    </form>
+</body>
+</html>

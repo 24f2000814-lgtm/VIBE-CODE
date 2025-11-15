@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <h1>Booking Confirmed</h1>
+    <p>Your booking ID is: {{ booking.booking_id }}</p>
+    <h2>Flight Details</h2>
+    <p>Airline: {{ booking.flight.airline }}</p>
+    <p>Flight Number: {{ booking.flight.flight_number }}</p>
+    <p>Departure: {{ booking.flight.origin }} at {{ booking.flight.departure_time.strftime('%Y-%m-%d %H:%M') }}</p>
+    <p>Arrival: {{ booking.flight.destination }} at {{ booking.flight.arrival_time.strftime('%Y-%m-%d %H:%M') }}</p>
+    <h2>Your Details</h2>
+    <p>Name: {{ booking.user.name }}</p>
+    <p>Email: {{ booking.user.email }}</p>
+    <p>Phone Number: {{ booking.user.phone_number }}</p>
+    <p>Seats Booked: {{ booking.seats_booked }}</p>
+</body>
+</html>
