@@ -1,0 +1,56 @@
+Build a flight booking system simulation app with the following requirements:
+
+1. **Core Features**
+   - Allow users to search for flights by:
+     - Departure city
+     - Destination city
+     - Departure date
+     - Return date (optional)
+   - Display available flights with details:
+     - Airline name
+     - Flight number
+     - Departure/arrival times
+     - Duration
+     - Price
+     - Seat availability
+   - Enable users to select a flight and book tickets.
+   - Simulate payment confirmation (no real payment gateway, just a mock success/failure).
+   - Generate a booking confirmation with a unique booking ID.
+
+2. **Data Models**
+   - **Flight**: flight number, airline, origin, destination, departure time, arrival time, duration, price, available seats.
+   - **User**: name, email, phone number.
+   - **Booking**: booking ID, user details, flight details, number of seats booked, booking status.
+
+3. **Functional Requirements**
+   - Search flights from a predefined dataset (mock data).
+   - Validate seat availability before booking.
+   - Update seat count after successful booking.
+   - Store booking history for each user.
+   - Provide cancellation option (restore seat count).
+
+4. **UI/UX**
+   - Simple interface with:
+     - Search form
+     - Flight results list
+     - Booking form
+     - Confirmation page
+     - Booking history page
+   - Use clean navigation and clear error messages.
+
+5. **Technical Requirements**
+   - Backend: Use Python (Flask/Django) or Node.js (Express).
+   - Frontend: React, Angular, or simple HTML/CSS/JS.
+   - Database: SQLite or MongoDB for storing flights and bookings.
+   - Ensure modular code with separate layers for data, business logic, and presentation.
+
+6. **Simulation Extras**
+   - Randomly generate flight schedules for different airlines.
+   - Add filters (price range, duration, airline).
+   - Simulate payment gateway with random success/failure.
+   - Provide sample users and preloaded bookings.
+
+Deliverables:
+- A working app that simulates searching, booking, and canceling flights.
+- Mock data for flights and users.
+- Documentation explaining how to run the app.
