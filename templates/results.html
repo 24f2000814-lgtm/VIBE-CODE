@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <h1>Flight Results</h1>
+    <div class="filters">
+        <label for="price_range">Price Range:</label>
+        <input type="range" id="price_range" name="price_range" min="0" max="1000" value="1000">
+        <span id="price_value">1000</span>
+
+        <label for="duration">Max Duration (minutes):</label>
+        <input type="range" id="duration" name="duration" min="0" max="600" value="600">
+        <span id="duration_value">600</span>
+
+        <label for="airline">Airline:</label>
+        <select id="airline" name="airline">
+            <option value="">All</option>
+            {% for airline in airlines %}
+                <option value="{{ airline }}">{{ airline }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <h2>Departure Flights</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Flight Number</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Duration (minutes)</th>
+                <th>Price</th>
+                <th>Seats Available</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+                <tr>
+                    <td>{{ flight.airline }}</td>
+                    <td>{{ flight.flight_number }}</td>
+                    <td>{{ flight.departure_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ flight.arrival_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ flight.duration }}</td>
+                    <td>{{ flight.price }}</td>
+                    <td>{{ flight.available_seats }}</td>
+                    <td>
+                        <form action="/book" method="post">
+                            <input type="hidden" name="flight_id" value="{{ flight.id }}">
+                            <button type="submit">Book</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if return_flights %}
+        <h2>Return Flights</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Airline</th>
+                    <th>Flight Number</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Duration (minutes)</th>
+                    <th>Price</th>
+                    <th>Seats Available</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for flight in return_flights %}
+                    <tr>
+                        <td>{{ flight.airline }}</td>
+                        <td>{{ flight.flight_number }}</td>
+                        <td>{{ flight.departure_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ flight.arrival_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ flight.duration }}</td>
+                        <td>{{ flight.price }}</td>
+                        <td>{{ flight.available_seats }}</td>
+                        <td>
+                            <form action="/book" method="post">
+                                <input type="hidden" name="flight_id" value="{{ flight.id }}">
+                                <button type="submit">Book</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
